@@ -1,5 +1,8 @@
 *.docx
 *.pdf
-*.tex
 .vscode/
 *.tmp
+*.png
+*.log
+*.aux
+*.gz
