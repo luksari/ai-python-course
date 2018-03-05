@@ -1,3 +1,5 @@
-*.tex
 *.docx
 *.pdf
+*.tex
+.vscode/
+*.tmp
