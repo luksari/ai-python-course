@@ -1,0 +1,450 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+
+\graphicspath{ {./} }
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\addtolength{\hoffset}{-1.5cm}
+\addtolength{\marginparwidth}{-1.5cm}
+\addtolength{\textwidth}{3cm}
+\addtolength{\voffset}{-1cm}
+\addtolength{\textheight}{2.5cm}
+\setlength{\topmargin}{0cm}
+\setlength{\headheight}{0cm}
+
+\begin{document}
+	
+	\title{Sprawozdanie nr I\\Systemy Sztucznej Inteligencji}
+	\author{Łukasz Tyszkiewicz, grupa I/A}
+	\date{\today}
+	
+	\maketitle
+	\begin{itemize}
+		\item 1.Wczytać zbiór danych iris. Podać liczbę próbek w tym zbiorze oraz ilość atrybutów opisujących każdą z nich.
+	\begin{lstlisting}
+iris = open("iris.data", 'r')
+
+irisData = []
+
+for line in iris:
+        row = line.split(",")
+        irisData.append(row)
+
+print("Number of probes: " + " " + str(len(irisData)))
+
+for probe in irisData:
+        print("Number of attributes: " + str(len(probe)))
+
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.8\textwidth]{first}
+                        \centering
+			\caption{Rozwiązanie zadania 1}
+			\label{fig:fig1}
+                \end{figure}
+                \clearpage 
+
+                \item 2.Odczytać wartości atrybutów dla próbek o numerach 10 i 75. Obliczyć ich odległość euklidesową.
+	\begin{lstlisting}
+iris = open("iris.data", 'r')
+
+irisData = []
+
+for line in iris:
+        row = line.split(",")
+        irisData.append(row)
+
+sum = 0
+
+for i in range(3):
+        dif = float(irisData[75][i]) - float(irisData[10][i])
+        powDif = m.pow(dif, 2)
+        sum = sum + powDif
+
+sqrtSum = m.sqrt(sum)
+
+print("Odleglosc euklidesowa: " + str(sqrtSum))
+
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.8\textwidth]{second}
+                        \centering
+			\caption{Rozwiązanie zadania 2}
+			\label{fig:fig2}
+                \end{figure}
+                \clearpage 
+
+                \item 3.Podać wartości minimalne, maksymalne, średnie i odchylenia standardowe dla każdego z atrybutów
+	\begin{lstlisting}
+pet_len, pet_width, sep_len, sep_width = [], [], [], []
+
+for probe in irisData:
+        pet_len.append(float(probe[2]))
+        pet_width.append(float(probe[3]))
+        sep_len.append(float(probe[0]))
+        sep_width.append(float(probe[1]))
+
+
+def showData(val, key):
+    maxVal = max(val)
+    minVal = min(val)
+    avgVal = sum(val) / float(len(val))
+    stdDevVal = np.std(val, axis=0)
+    print("\n")
+    print("Maximum " + key + " value: " + str(maxVal))
+    print("Minimum " + key + " value: " + str(minVal))
+    print("Average " + key + " value: " + str(avgVal)[:7])
+    print("Standart deviation of " + key + " value: " + str(stdDevVal)[:7])
+
+showData(pet_len, "petal length")
+showData(pet_width, "petal width")
+showData(sep_len, "sepal length")
+showData(sep_width, "sepal width")
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{third}
+                        \centering
+			\caption{Rozwiązanie zadania 3}
+			\label{fig:fig3}
+                \end{figure}
+                \clearpage
+
+                \item 4.Dokonać wizualizacji zbioru iris w przestrzeni złożonej z dwóch pierwszych atrybutów.
+	\begin{lstlisting}
+sep_len = []
+sep_width = []
+irisData = irisData[:-1]
+
+for probe in irisData:
+        sep_len.append(float(probe[0]))
+        sep_width.append(float(probe[1]))
+
+plt.plot(sep_len, sep_width, 'ro')
+plt.ylabel("Sepal width")
+plt.xlabel("Sepal length")
+plt.show()
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.8\textwidth]{fourth}
+                        \centering
+			\caption{Rozwiązanie zadania 4}
+			\label{fig:fig4}
+                \end{figure}
+                \clearpage
+
+        \item 5.Dokonać wizualizacji zbioru iris w przestrzeni złożonej z atrybutów 1 oraz 3 przy czym elementy każdej z klas zaznaczyć innym kolorem
+	\begin{lstlisting}
+pet_len, sep_len = [], []
+p_lenSet, p_lenVer, p_lenVir, s_lenSet, s_lenVer, s_lenVir = [], [], [], [], [], []
+
+for probe in irisData:
+    pet_len.append(float(probe[0]))
+    sep_len.append(float(probe[2]))
+    if probe[4] == "Iris-setosa":
+        p_lenSet.append(float(probe[2]))
+        s_lenSet.append(float(probe[0]))
+    elif probe[4] == "Iris-versicolor":
+        p_lenVer.append(float(probe[2]))
+        s_lenVer.append(float(probe[0]))
+    elif probe[4] == "Iris-virginica":
+        s_lenVir.append(float(probe[0]))
+        p_lenVir.append(float(probe[2]))
+max_sep_len = max(sep_len)
+max_pet_len = max(pet_len)
+min_pet_len = min(pet_len)
+min_sep_len = min(sep_len)
+offset = 0.25
+
+plt.plot(p_lenSet, s_lenSet, 'ro')
+plt.plot(p_lenVer, s_lenVer, 'go')
+plt.plot(p_lenVir, s_lenVir, 'bo')
+plt.ylabel("Petal length")
+plt.xlabel("Sepal length")
+plt.show()
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{fifth}
+                        \centering
+			\caption{Rozwiązanie zadania 5}
+			\label{fig:fig5}
+                \end{figure}
+                \clearpage
+
+        \item 6.Podać średnią wartość zmierzonych atrybutów dla próbek z klasy setosa oraz versicolor.
+	\begin{lstlisting}
+_class, sep_len, sep_width, pet_len, pet_width = [], [], [], [], []
+
+for probe in irisData:
+    _class.append(probe[4])
+    sep_len.append(float(probe[0]))
+    sep_width.append(float(probe[1]))
+    pet_len.append(float(probe[2]))
+    pet_width.append(float(probe[3]))
+
+data = np.column_stack((_class, sep_len, sep_width, pet_len, pet_width))
+
+avg_pet_len = []
+avg_pet_width = []
+avg_sep_len = []
+avg_sep_width = []
+
+
+def showData(key):
+
+    pet_len = []
+    sep_len = []
+    pet_width = []
+    sep_width = []
+
+    index = 0
+    for val in data:
+        if val[0] == key:
+            sep_len.append(float(val[1]))
+            sep_width.append(float(val[2]))
+            pet_len.append(float(val[3]))
+            pet_width.append(float(val[4]))
+
+    avg_pet_len.append(sum(pet_len) / len(pet_len))
+    avg_pet_width.append(sum(pet_width) / len(pet_width))
+    avg_sep_width.append(sum(sep_width) / len(sep_width))
+    avg_sep_len.append(sum(sep_len) / len(sep_len))
+
+    if key == "Iris-setosa":
+        index = 0
+    elif key == "Iris-versicolor":
+        index = 1
+    elif key == "Iris-virginica":
+        index = 2
+    print("\n" + key + " average attributes values:"
+          + "\npetal length: " + str(avg_pet_len[index])[:5]
+          + "\npetal width: " + str(avg_pet_width[index])[:5]
+          + "\nsepal length: " + str(avg_sep_len[index])[:5]
+          + "\nsepal width: " + str(avg_sep_width[index])[:5])
+
+
+showData("Iris-setosa")
+showData("Iris-versicolor")
+showData("Iris-virginica")
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{sixth}
+                        \centering
+			\caption{Rozwiązanie zadania 6}
+			\label{fig:fig6}
+                \end{figure}
+                \clearpage
+
+                        \item 7.Dane poddać normalizacji i po dokonaniu tej operacji obliczyć ponownie wartości minimalne, maksymalne, średnie i odchylenia standardowe dla każdego z atrybutów.
+	\begin{lstlisting}
+dataMatrix = np.matrix((pet_len, pet_width, sep_len, sep_width))
+dataNormalized = preprocessing.normalize(dataMatrix, norm="l1")
+
+pet_len = dataNormalized[0]
+pet_width = dataNormalized[1]
+sep_len = dataNormalized[2]
+sep_width = dataNormalized[3]
+
+
+def showData(val, key):
+    maxVal = max(val)
+    minVal = min(val)
+    avgVal = sum(val) / float(len(val))
+    stdDevVal = np.std(val, axis=0)
+    print("\n")
+    print("Maximum " + key + " value: " + str(maxVal))
+    print("Minimum " + key + " value: " + str(minVal))
+    print("Average " + key + " value: " + str(avgVal)[:7])
+    print("Standart deviation of " + key + " value: " + str(stdDevVal)[:7])
+
+
+showData(pet_len, "petal length")
+showData(pet_width, "petal width")
+showData(sep_len, "sepal length")
+showData(sep_width, "sepal width")
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{seventh}
+                        \centering
+			\caption{Rozwiązanie zadania 7}
+			\label{fig:fig7}
+                \end{figure}
+                \clearpage
+
+                                       \item 8.Wygenerować losowo zbiór 10 danych w przestrzeni dwuwymiarowej. Pierwszy atrybut z rozkładu N(−2,1)N(−2,1), drugi z rozkładu jednostajnego na przedziale [0,10][0,10]. Zbiór danych zwizualizować za pomocą wykresu.
+	\begin{lstlisting}
+first_attr = np.random.rand(10) - 2
+second_attr = np.random.uniform(0, 10, 10)
+data = np.column_stack((first_attr, second_attr))
+
+plt.plot(first_attr, second_attr, 'ro')
+plt.xlabel("N(-2,1) Distribiution")
+plt.ylabel("[0,10] Distribiution")
+plt.show()
+
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{eight}
+                        \centering
+			\caption{Rozwiązanie zadania 8}
+			\label{fig:fig8}
+                \end{figure}
+                \clearpage
+                                       \item 9.Podać macierz odległości euklidesowych, mahalanobisa oraz Minkowskiego L1L1 dla wszystkich par elementów tego zbioru
+	\begin{lstlisting}
+first_attr = np.random.randn(10)-2
+second_attr = 10*np.random.randn(10)
+data = np.vstack((first_attr, second_attr))
+data=data.conj().transpose()
+
+euclidean_matrix = sklearn.metrics.pairwise.pairwise_distances(data, metric='euclidean')
+mahalanobian_matrix = sklearn.metrics.pairwise.pairwise_distances(data,  metric='mahalanobis')
+minkowskian_matrix = sklearn.metrics.pairwise.pairwise_distances(data, metric='minkowski')
+
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{nineth}
+                        \centering
+			\caption{Rozwiązanie zadania 9}
+			\label{fig:fig9}
+                \end{figure}
+                \clearpage
+                                       \item Dokonać skalowania liniowego wygenerowanego zbioru na przedział [0,1][0,1] i ponownie obliczyć odległości dla wszystkich par obiektów.
+	\begin{lstlisting}
+data = np.vstack((first_attr, second_attr))
+data=data.conj().transpose()
+
+normalize = preprocessing.MinMaxScaler((0,1))
+data = normalize.fit_transform(data)
+
+euclidean_matrix = sklearn.metrics.pairwise.pairwise_distances(
+    data, metric='euclidean')
+mahalanobian_matrix = sklearn.metrics.pairwise.pairwise_distances(
+    data,  metric='mahalanobis')
+minkowskian_matrix = sklearn.metrics.pairwise.pairwise_distances(
+    data, metric='minkowski')
+
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{tenth}
+                        \centering
+			\caption{Rozwiązanie zadania 10}
+			\label{fig:fig10}
+                \end{figure}
+                \clearpage
+\item 11.Zaproponować postać funkcji klasyfikujących dla problemu klasyfikacyjnego dla dwóch klas i dwuwymiarowej przestrzeni cech przy założeniu, że elementy klasy 1 znajdują się w drugiej, a elementy klasy 2 w czwartej ćwiartce układu współrzędnych. Podać wzór określający powierzchnię decyzyjną tego klasyfikatora.
+	\begin{lstlisting}
+def classifier(x):
+    if x[0] >= 0 and x[1] >= 0:
+        return 1
+    elif x[0] < 0 and x[1] > 0:
+        return 2
+    elif x[0] <= 0 and x[1] <= 0:
+        return 3
+    elif x[0] > 0 and x[1] <0:
+        return 4
+
+labels=np.array([classifier(data[i,:]) for i in range(2*N)])
+
+c1 = (labels==1).nonzero()
+c2 = (labels==2).nonzero()
+c3 = (labels==3).nonzero()
+c4 = (labels==4).nonzero()
+
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{eleven}
+                        \centering
+			\caption{Rozwiązanie zadania 11}
+			\label{fig:fig11}
+                \end{figure}
+                \clearpage
+\item 12.Wygenerować przykładowy zbiór danych testowych (po 10 próbek na klasę) dla problemu z poprzedniego zadania. Dokonać testowania zaproponowanego klasyfikatora.
+	\begin{lstlisting}
+class1 = np.random.normal(1, 8, 2*N)
+class2 = 10*np.random.rand(1,2*N) -7
+
+data = np.vstack((class1, class2))
+data = data.conj().transpose()
+
+
+
+min_x, min_y, max_x, max_y, offset = min(data[:, 0]), min(
+    data[:, 1]), max(data[:, 0]), max(data[:, 1]), 1
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+plt.scatter(data[:, 0], data[:, 1])
+
+left, right = ax.get_xlim()
+low, high = ax.get_ylim()
+
+
+plt.plot([-20, 20], [0, 0], "black")
+plt.plot([0, 0], [-20, 20], "black")
+
+plt.grid()
+
+plt.show()
+
+labels = np.array([classifier(data[i, :]) for i in range(2*N)])
+
+c1 = (labels == 1).nonzero()
+c2 = (labels == 2).nonzero()
+c3 = (labels == 3).nonzero()
+c4 = (labels == 4).nonzero()
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+plt.scatter(data[:, 0], data[:, 1])
+
+left, right = ax.get_xlim()
+low, high = ax.get_ylim()
+
+plt.plot([-20, 20], [0, 0], "black")
+plt.plot([0, 0], [-20, 20], "black")
+plt.grid()
+
+plt.scatter(data[c1, 0], data[c1, 1], c='b')
+plt.scatter(data[c2, 0], data[c2, 1], c='r')
+plt.scatter(data[c3, 0], data[c3, 1], c='g')
+plt.scatter(data[c4, 0], data[c4, 1], c='y')
+
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{twelve}
+                        \centering
+			\caption{Rozwiązanie zadania 12}
+			\label{fig:fig12}
+                \end{figure}
+                \clearpage
+
+        	\end{itemize}
+	
+\end{document}
