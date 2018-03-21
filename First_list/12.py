@@ -45,6 +45,8 @@ labels = np.array([classifier(data[i, :]) for i in range(2*N)])
 c1 = (labels == 1).nonzero()
 c2 = (labels == 2).nonzero()
 
+
+
 fig = plt.figure()
 ax = fig.add_subplot(111)
 
