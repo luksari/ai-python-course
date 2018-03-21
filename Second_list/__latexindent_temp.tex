@@ -1,0 +1,16 @@
+scores = []
+for k in range(1, N):
+    clf = KNeighborsClassifier(k, weights='uniform', metric='euclidean')
+    clf.fit(train, train_targets)
+    tempScore = clf.score(test, test_targets)
+    scores.append(tempScore)
+
+bestScore = max(scores)
+bestK = scores.index(max(scores))
+
+clf = KNeighborsClassifier(bestK, weights='uniform',
+metric='euclidean')
+clf.fit(train, train_targets)
+clfScore = clf.score(test, test_targets)
+print("Procent poprawnych klasyfikacji:", round(clf.score(test, test_targets) * 100, 2),"%")
+print("Źle zakwalifikowanych: ", math.floor(len(test_data) * (1 - clfScore)))

@@ -1,0 +1,293 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{listings}
+\usepackage{color}
+
+\DeclareUnicodeCharacter{2010}{-}
+\graphicspath{ {./} }
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\addtolength{\hoffset}{-1.5cm}
+\addtolength{\marginparwidth}{-1.5cm}
+\addtolength{\textwidth}{3cm}
+\addtolength{\voffset}{-1cm}
+\addtolength{\textheight}{2.5cm}
+\setlength{\topmargin}{0cm}
+\setlength{\headheight}{0cm}
+
+\begin{document}
+	
+	\title{Sprawozdanie nr II\\Systemy Sztucznej Inteligencji}
+	\author{Łukasz Tyszkiewicz, grupa I/A}
+	\date{\today}
+	
+	\maketitle
+	\begin{itemize}
+		\item 1.Wczytać zbiór danych banana. Dokonać podziału zbioru danych na część uczącą oraz testową w sposób losowy, np. 30 dla uczenia, 70 dla testowania.
+	\begin{lstlisting}
+banana = sio.loadmat("banana.mat")
+train_data = banana["train_data"]
+train_labels = banana["train_labels"]
+train_labels = np.array(train_labels)
+test_data = banana["test_data"]
+test_labels = banana["test_labels"]
+test_labels = np.array(test_labels)
+
+train, dummy, train_targets, dummy = train_test_split(train_data, train_labels.ravel(), test_size=0.70)
+
+dummy, test, dummy, test_targets = train_test_split(test_data, test_labels.ravel(), test_size=0.70)
+
+print("Liczebnosc zbioru uczacego sie:",len(train))
+print("Liczebnosc zbioru testowego:",len(test))
+
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.8\textwidth]{01}
+                        \centering
+			\caption{Rozwiązanie zadania 1}
+			\label{fig:fig1}
+                \end{figure}
+                \clearpage 
+
+                \item 2.Dokonać uczenia klasyfikatora Bayesa na zbiorze uczącym i jego testowania na zbiorze testowym.
+	\begin{lstlisting}
+gnb = GaussianNB()
+tmp = gnb.fit(train, train_targets)
+Z = tmp.predict(test)
+
+print(Z)
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.8\textwidth]{02}
+                        \centering
+			\caption{Rozwiązanie zadania 2}
+			\label{fig:fig2}
+                \end{figure}
+                \clearpage 
+
+                \item 3.Zwizualizować na płaszczyźnie 2D wynik klasyfikacji na zbiorze testowym. Narysować obszary decyzyjne.
+	\begin{lstlisting}
+gnb = GaussianNB()
+tmp = gnb.fit(train, train_targets)
+Z = tmp.predict(test)
+
+c1 = (Z == 1).nonzero()
+c2 = (Z == 2).nonzero()
+
+
+C = 1.0
+h = .02
+x_min, x_max = test[:, 0].min() - 1, test[:, 0].max() + 1
+y_min, y_max = test[:, 1].min() - 1, test[:, 1].max() + 1
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+Z = tmp.predict(np.c_[xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
+rgb_lighten = ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF'])
+plt.pcolormesh(xx, yy, Z, cmap=rgb_lighten)
+plt.scatter(test[c1, 0], test[c1, 1], c="b", label="Grupa 1")
+plt.scatter(test[c2, 0], test[c2, 1], c="r", label="Grupa 2")
+plt.legend()
+
+plt.show()
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{03}
+                        \centering
+			\caption{Rozwiązanie zadania 3}
+			\label{fig:fig3}
+                \end{figure}
+                \clearpage
+
+                \item 4.Ocenić sprawność klasyfikatora (procent poprawnych klasyfikacji).
+	\begin{lstlisting}
+gnb = GaussianNB()
+tmp = gnb.fit(train, train_targets)
+Z = tmp.predict(test)
+
+print("Procent poprawnych klasyfikacji:", round(tmp.score(test, test_targets) * 100, 2),"%")
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.8\textwidth]{04}
+                        \centering
+			\caption{Rozwiązanie zadania 4}
+			\label{fig:fig4}
+                \end{figure}
+                \clearpage
+
+        \item 5.Zaimplementuj klasyfikator minimalno-odległościowy.
+	\begin{lstlisting}
+clf = NearestCentroid()
+
+print(clf)
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{05}
+                        \centering
+			\caption{Rozwiązanie zadania 5}
+			\label{fig:fig5}
+                \end{figure}
+                \clearpage
+
+        \item 6.(zbiór danych banana) Dokonać uczenia klasyfikatora minimalno-odległościowego na zbiorze uczącym i jego testowania na zbiorze testowym.
+	\begin{lstlisting}
+clf = NearestCentroid()
+clf.fit(train, train_targets)
+Z = clf.predict(test)
+print(Z)
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{06}
+                        \centering
+			\caption{Rozwiązanie zadania 6}
+			\label{fig:fig6}
+                \end{figure}
+                \clearpage
+
+                        \item 7.Zwizualizować na płaszczyźnie 2D wynik klasyfikacji na zbiorze testowym, zaznaczając każdą z klas innym kolorem. Na wykresie umieścić również środki klas uzyskane w procesie uczenia.
+	\begin{lstlisting}
+clf = NearestCentroid()
+clf.fit(train, train_targets)
+Z = clf.predict(test)
+
+c1 = (Z == 1).nonzero()
+c2 = (Z == 2).nonzero()
+plt.scatter(test[c1, 0], test[c1, 1], c="g", label="Klasa 1")
+plt.scatter(test[c2, 0], test[c2, 1], c="r", label="Klasa 2")
+plt.legend()
+plt.scatter(clf.centroids_[:, 0], clf.centroids_[:, 1], c="b")
+plt.show()
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{07}
+                        \centering
+			\caption{Rozwiązanie zadania 7}
+			\label{fig:fig7}
+                \end{figure}
+                \clearpage
+
+                \item 8.Ocenić sprawność klasyfikatora (procent poprawnych klasyfikacji).
+	\begin{lstlisting}
+clf = NearestCentroid()
+clf.fit(train, train_targets)
+Z = clf.predict(test)
+
+print("Procent poprawnych klasyfikacji:", round(clf.score(test, test_targets) * 100, 2),"%")
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{08}
+                        \centering
+			\caption{Rozwiązanie zadania 8}
+			\label{fig:fig8}
+                \end{figure}
+                \clearpage
+                \item 9.Wczytać zbiór banana. Przetestować klasyfikator kNN dla kilku wartości parametru k i wybrać tą dla której uzyskana sprawność jest maksymalna – podać ile wynosi.
+	\begin{lstlisting}
+scores = []
+for k in range(1, N):
+    clf = KNeighborsClassifier(k, weights='uniform' ,metric='euclidean')
+    clf.fit(train, train_targets)
+    tempScore = clf.score(test, test_targets)
+    scores.append(tempScore)
+
+bestScore  =max(scores)
+bestK = scores.index(max(scores))
+        
+print("Najlepszy wynik", bestScore,"dla k =", bestK)
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{09}
+                        \centering
+			\caption{Rozwiązanie zadania 9}
+			\label{fig:fig9}
+                \end{figure}
+                \clearpage
+                                       \item 10.Dla parametru kk z poprzedniego zadanie wizualizować wyniki klasyfikacji na płaszczyźnie 2D, zaznaczając każdą z klas innym kolorem.
+	\begin{lstlisting}
+scores = []
+for k in range(1, N):
+    clf = KNeighborsClassifier(k, weights='uniform', metric='euclidean')
+    clf.fit(train, train_targets)
+    tempScore = clf.score(test, test_targets)
+    scores.append(tempScore)
+
+bestScore = max(scores)
+bestK = scores.index(max(scores))
+
+C = 1.0
+h = .02
+x_min, x_max = test[:, 0].min() - 1, test[:, 0].max() + 1
+y_min, y_max = test[:, 1].min() - 1, test[:, 1].max() + 1
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+rgb_lighten = ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF'])
+rgb = ListedColormap(['#FF0000', '#00FF00', '#0000FF'])
+Z = KNeighborsClassifier(bestK, weights='uniform', metric='euclidean').fit(train, train_targets).predict(np.c_[xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
+plt.figure()
+plt.pcolormesh(xx, yy, Z, cmap=rgb_lighten)
+plt.scatter(test[:, 0], test[:, 1], c=test_targets, cmap=rgb)
+plt.xlim(xx.min(), xx.max())
+plt.ylim(yy.min(), yy.max())
+plt.show()
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{10}
+                        \centering
+			\caption{Rozwiązanie zadania 10}
+			\label{fig:fig10}
+                \end{figure}
+                \clearpage
+\item 11.Sprawdzić ile obiektów zbioru testowego zostalo błędnie zaklasyfikowanych.
+	\begin{lstlisting}
+scores = []
+for k in range(1, N):
+    clf = KNeighborsClassifier(k, weights='uniform', metric='euclidean')
+    clf.fit(train, train_targets)
+    tempScore = clf.score(test, test_targets)
+    scores.append(tempScore)
+
+bestScore = max(scores)
+bestK = scores.index(max(scores))
+
+clf = KNeighborsClassifier(bestK, weights='uniform',
+metric='euclidean')
+clf.fit(train, train_targets)
+clfScore = clf.score(test, test_targets)
+print("Procent poprawnych klasyfikacji:", round(clf.score(test, test_targets) * 100, 2),"%")
+print("Zle zakwalifikowanych: ", math.floor(len(test_data) * (1 - clfScore)))
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{11}
+                        \centering
+			\caption{Rozwiązanie zadania 11}
+			\label{fig:fig11}
+                \end{figure}
+                \clearpage
+        	\end{itemize}
+	
+\end{document}
+\end{document}
