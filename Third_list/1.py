@@ -8,5 +8,5 @@ y = iris.target
 train, test, train_targets, test_targets = train_test_split(X, y,
  test_size=0.50) 
 
-print("Wielkość zbioru treningowego:",len(train))
-print("Wielkość zbioru testowego:",len(test))
+print("Wielkosc zbioru treningowego:",len(train))
+print("Wielkosc zbioru testowego:",len(test))
