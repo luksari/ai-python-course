@@ -1,0 +1,281 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{listings}
+\usepackage{color}
+
+\DeclareUnicodeCharacter{2010}{-}
+\graphicspath{ {./} }
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\addtolength{\hoffset}{-1.5cm}
+\addtolength{\marginparwidth}{-1.5cm}
+\addtolength{\textwidth}{3cm}
+\addtolength{\voffset}{-1cm}
+\addtolength{\textheight}{2.5cm}
+\setlength{\topmargin}{0cm}
+\setlength{\headheight}{0cm}
+
+\begin{document}
+	
+	\title{Sprawozdanie nr III\\Systemy Sztucznej Inteligencji}
+	\author{Łukasz Tyszkiewicz, grupa I/A}
+	\date{\today}
+	
+	\maketitle
+	\begin{itemize}
+		\item 1.Wczytać zbiór uczący iris i dokonać jego podziału na część uczącą i testową (po 75 próbek dla uczenia i testowania) 
+	\begin{lstlisting}
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+
+iris = load_iris()
+X = iris.data
+y = iris.target
+ 
+train, test, train_targets, test_targets = train_test_split(X, y,
+ test_size=0.50) 
+
+print("Wielkosc zbioru treningowego:",len(train))
+print("Wielkosc zbioru testowego:",len(test))                
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.8\textwidth]{01}
+                        \centering
+			\caption{Rozwiązanie zadania 1}
+			\label{fig:fig1}
+                \end{figure}
+                \clearpage 
+
+                \item 2.Skonstruować drzewo klasyfikacyjne dla domyślnych wartości parametrów na podstawie zbioru uczącego i dokonać jego wizualizacji
+	\begin{lstlisting}
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn import tree
+import pydot
+import io
+import graphviz
+                
+iris = load_iris()
+X = iris.data
+y = iris.target
+train, test, train_targets, test_targets = train_test_split(X, y,       test_size=0.50)
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(X, y)
+y = clf.predict(X)
+                
+dot_data = io.StringIO()
+tree.export_graphviz(clf, out_file=dot_data)
+graph = pydot.graph_from_dot_data(dot_data.getvalue())
+graph[0].write_png("02.png")
+                        \end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.8\textwidth]{02}
+                        \centering
+			\caption{Rozwiązanie zadania 2}
+			\label{fig:fig2}
+                \end{figure}
+                \clearpage 
+
+                \item 3.Ocenić uzyskaną sprawność klasyfikacji na zbiorze testowym. Ile elementów zostało niepoprawnie zaklasyfikowanych?
+	\begin{lstlisting}
+                from sklearn.datasets import load_iris
+                from sklearn.model_selection import train_test_split
+                from sklearn import tree
+                import math
+                
+                iris = load_iris()
+                X = iris.data
+                y = iris.target
+                train, test, train_targets, test_targets = train_test_split(
+                    X, y,       test_size=0.50)
+                clf = tree.DecisionTreeClassifier()
+                clf = clf.fit(X, y)
+                
+                k = 10
+                clfScore = clf.score(train, test_targets)
+                print("Sprawnosc klasyfikatora",clfScore * 100, "%")
+                print("Niepoprawnie zaklasyfikowanych: ",
+                      math.ceil(len(train) * (1 - clfScore)))
+                
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{03}
+                        \centering
+			\caption{Rozwiązanie zadania 3}
+			\label{fig:fig3}
+                \end{figure}
+                \clearpage
+
+                \item 4.Odczytać wartości parametrów drzewa klasyfikacyjnego. Jakie kryterium decyduje o wyborze testu dla wartości atrybutów?
+        \begin{lstlisting}
+                print("O wyborze testu decyduje indeks Giniego")
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.8\textwidth]{04}
+                        \centering
+			\caption{Rozwiązanie zadania 4}
+			\label{fig:fig4}
+                \end{figure}
+                \clearpage
+
+        \item 5.Przetestować działanie algorytmu drzewa klasyfikacyjnego na próbkach zbioru testowego i ocenić sprawność klasyfikacji.
+        	\begin{lstlisting}
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn import tree
+
+
+iris = load_iris()
+X = iris.data
+y = iris.target
+train, test, train_targets, test_targets = train_test_split(
+    X, y,       test_size=0.50)
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(X, y)
+y = clf.predict(X)
+
+score = (iris.target == y).sum()
+print("Poprawnie zaklasyfikowanych. : ", score)
+print("Sprawnosc: ", float(score) / len(y))
+
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{05}
+                        \centering
+			\caption{Rozwiązanie zadania 5}
+			\label{fig:fig5}
+                \end{figure}
+                \clearpage
+
+        \item 6.Skonstruować i wyświetlić drzewo ponownie ograniczając jego głębokość do dwóch oraz trzech. Jaką w tym przypadku osiągamy sprawność klasyfikacji?
+        \begin{lstlisting}
+                
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{061}
+                        \centering
+			\caption{Rozwiązanie zadania 6}
+			\label{fig:fig6}
+                \end{figure}
+                \begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{062}
+                        \centering
+			\caption{Rozwiązanie zadania 6}
+			\label{fig:fig6.1}
+                \end{figure}
+                \clearpage
+
+                        \item 7.Skonstruować drzewo klasyfikacyjne korzystając z kryterium przyrostu informacji dla wyboru testu (Wskazówka: criterion=’entropy’).
+	\begin{lstlisting}
+clf = NearestCentroid()
+clf.fit(train, train_targets)
+Z = clf.predict(test)
+
+c1 = (Z == 1).nonzero()
+c2 = (Z == 2).nonzero()
+plt.scatter(test[c1, 0], test[c1, 1], c="g", label="Klasa 1")
+plt.scatter(test[c2, 0], test[c2, 1], c="r", label="Klasa 2")
+plt.legend()
+plt.scatter(clf.centroids_[:, 0], clf.centroids_[:, 1], c="b")
+plt.show()
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{07}
+                        \centering
+			\caption{Rozwiązanie zadania 7}
+			\label{fig:fig7}
+                \end{figure}
+                \clearpage
+
+                \item 8.Przetestować uzyskane drzewo na zbiorze testowym i porównać wynik z drzewem uzyskanym dla indeksu Giniego.
+	\begin{lstlisting}
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn import tree
+import pydot
+import io
+import graphviz
+
+
+iris = load_iris()
+X = iris.data
+y = iris.target
+train, test, train_targets, test_targets = train_test_split(
+    X, y,       test_size=0.50)
+clf = tree.DecisionTreeClassifier(criterion='entropy')
+clf = clf.fit(X, y)
+y = clf.predict(X)
+
+score = (iris.target == y).sum()
+print("Poprawnie zaklasyfikowanych. : ", score)
+print("Sprawnosc: ", float(score) / len(y))
+
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{08}
+                        \centering
+			\caption{Rozwiązanie zadania 8}
+			\label{fig:fig8}
+                \end{figure}
+                \clearpage
+                \item 9. Skonstruować drzewo klasyfikacyjne dla zbioru iris w podprzestrzeni cech złożonej jedynie z dwóch pierwszych atrybutów. Ocenić sprawność uzyskanego rozwiązania.
+	\begin{lstlisting}
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn import tree
+import pydot
+import io
+import graphviz
+
+
+iris = load_iris()
+X = iris.data[:, :2]
+y = iris.target 
+train, test, train_targets, test_targets = train_test_split(X, y,
+                                               test_size=0.50)
+clf = tree.DecisionTreeClassifier(criterion='entropy',  max_depth=2,
+                                  min_samples_split=2, min_samples_leaf=2)
+clf = clf.fit(X, y)
+y = clf.predict(X)
+
+score = (iris.target == y).sum()
+print("Poprawnie zaklasyfikowanych. : ", score)
+print("Sprawnosc: ", float(score) / len(y))
+
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{09}
+                        \centering
+			\caption{Rozwiązanie zadania 9}
+			\label{fig:fig9}
+                \end{figure}
+                \clearpage
+        \end{itemize}
+	
+\end{document}
+\end{document}
