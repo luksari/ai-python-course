@@ -1,0 +1,174 @@
+PWD c:/Studia/AI/ai-python-course/Fourth_list
+INPUT C:/Users/Lukasz/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt
+INPUT c:/Studia/AI/ai-python-course/Fourth_list/Sprawozdanie_4.tex
+OUTPUT Sprawozdanie_4.log
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/article.cls
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/article.cls
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/size12.clo
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/size12.clo
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/cm/cmr12.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/babel/babel.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/babel/babel.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/babel/switch.def
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/arabi/bblopts.cfg
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/arabi/bblopts.cfg
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/babel-polish/polish.ldf
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/babel-polish/polish.ldf
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/babel/babel.def
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/babel/txtbabel.def
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/polski/polski.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/polski/polski.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/polski/ot4cmr.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/ot4enc.def
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/polski/ot4cmr.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/polski/ot4cmr.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/pl/plr12.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/inputenc.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/inputenc.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/utf8.def
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/utf8.def
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/t1enc.dfu
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/t1enc.dfu
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/ot1enc.dfu
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/ot1enc.dfu
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/omsenc.dfu
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/omsenc.dfu
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/fontenc.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/fontenc.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/t1enc.def
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/t1enc.def
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/jknappen/ec/ecrm1200.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/graphicx.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/graphicx.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/keyval.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/keyval.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/graphics.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/graphics.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/trig.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/trig.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics-cfg/graphics.cfg
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics-cfg/graphics.cfg
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics-def/pdftex.def
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics-def/pdftex.def
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/lmodern.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/lmodern.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/listings/listings.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/listings/listings.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/listings/lstmisc.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/listings/lstmisc.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/listings/listings.cfg
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/listings/listings.cfg
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/color.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/color.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics-cfg/color.cfg
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics-cfg/color.cfg
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
+INPUT Sprawozdanie_4.aux
+INPUT Sprawozdanie_4.aux
+OUTPUT Sprawozdanie_4.aux
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/t1lmr.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/t1lmr.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmr12.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/context/base/supp-pdf.mkii
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/context/base/supp-pdf.mkii
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/epstopdf-base.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/epstopdf-base.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/infwarerr.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/infwarerr.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/grfext.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/grfext.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/kvdefinekeys.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/kvdefinekeys.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/ltxcmds.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/ltxcmds.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/kvoptions.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/kvoptions.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/kvsetkeys.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/kvsetkeys.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/etexcmds.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/etexcmds.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/pdftexcmds.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/pdftexcmds.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/ifpdf.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/ifpdf.sty
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmr17.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmr12.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/ot1lmr.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/ot1lmr.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr12.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr10.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr7.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/omllmm.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/omllmm.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/lmmi12.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/lmmi10.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/lmmi7.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/omslmsy.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/omslmsy.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/lmsy7.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/omxlmex.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/omxlmex.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/lmex10.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/omslmr.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/omslmr.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmr10.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/t1lmtt.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/tex/latex/lm/t1lmtt.fd
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/ec-lmtt10.tfm
+INPUT 01.png
+INPUT ./01.png
+OUTPUT Sprawozdanie_4.pdf
+INPUT ./01.png
+INPUT ./01.png
+INPUT ./01.png
+INPUT C:/Users/Lukasz/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr12.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr8.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr6.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/lmmi12.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/lmmi8.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/lmmi6.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/lmsy8.tfm
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/lm/lmsy6.tfm
+INPUT 02.png
+INPUT ./02.png
+INPUT ./02.png
+INPUT ./02.png
+INPUT ./02.png
+INPUT 03.png
+INPUT ./03.png
+INPUT ./03.png
+INPUT ./03.png
+INPUT ./03.png
+INPUT 04.png
+INPUT ./04.png
+INPUT ./04.png
+INPUT ./04.png
+INPUT ./04.png
+INPUT 05.png
+INPUT ./05.png
+INPUT ./05.png
+INPUT ./05.png
+INPUT ./05.png
+INPUT Sprawozdanie_4.aux
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb
+INPUT C:/Users/Lukasz/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb

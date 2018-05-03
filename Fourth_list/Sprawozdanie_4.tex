@@ -1,0 +1,348 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{listings}
+\usepackage{color}
+
+\DeclareUnicodeCharacter{2010}{-}
+\graphicspath{ {./} }
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\addtolength{\hoffset}{-1.5cm}
+\addtolength{\marginparwidth}{-1.5cm}
+\addtolength{\textwidth}{3cm}
+\addtolength{\voffset}{-1cm}
+\addtolength{\textheight}{2.5cm}
+\setlength{\topmargin}{0cm}
+\setlength{\headheight}{0cm}
+
+\begin{document}
+	
+	\title{Sprawozdanie nr IV\\Systemy Sztucznej Inteligencji}
+	\author{Łukasz Tyszkiewicz, grupa I/A}
+	\date{\today}
+	
+	\maketitle
+	\begin{itemize}
+		\item 1.Wczytać zbiór olivetti faces. Dla liczby komponentów od 1 do 6 przeprowadzić algorytmem PCA redukcję przestrzeni wymiaru cech. Zobrazować wyniki. Dla jakiej liczby komponentów uzyskano najlepszy wynik?
+	\begin{lstlisting}
+
+                olivetti = datasets.fetch_olivetti_faces()
+                X = olivetti.data
+                Y = olivetti.target
+                max = 0
+                max_index = 0
+                
+                for i in range(1, 7):
+                    pca = PCA(n_components=i)
+                    X_r = pca.fit(X).transform(X)
+                    print(i, ":", pca.explained_variance_ratio_.sum())
+                    if max < pca.explained_variance_ratio_.sum():
+                        max = pca.explained_variance_ratio_.sum()
+                        max_index = i
+                print("Best: ", max_index)          
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.8\textwidth]{01}
+                        \centering
+			\caption{Rozwiązanie zadania 1}
+			\label{fig:fig1}
+                \end{figure}
+                \clearpage 
+
+                \item 2.Korzystając z funkcji $sklearn.datasets.fetch_mldata$ pobierz zbiór danych MNIST. Zbiór ten zawiera zdigitalizowane próbki ręczne pisma cyfr od 0 do 9. Podziel zbiór losowo na część uczącą i testową.
+	\begin{lstlisting}
+                digits = datasets.load_digits()
+                target_names = digits.target_names
+                X = digits.data
+                Y = digits.target
+                train, test, train_targets, test_targets = train_test_split(X, Y, test_size=0.5, random_state=42)
+                print(len(train), len(test))
+                        \end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.8\textwidth]{02}
+                        \centering
+			\caption{Rozwiązanie zadania 2}
+			\label{fig:fig2}
+                \end{figure}
+                \clearpage 
+
+                \item 3.Korzystając z algorytmu FLD dokonaj redukcji wymiaru cech dla różnej liczby cech zbioru uczącego MNIST. Następnie sprawdź sprawność klasyfikatora kNN dla zbioru testowego ograniczonego do wybranego podzbioru cech. Parametr kk przyjmij jako pierwiastek z liczby obiektów w zbiorze. Dla jakiej liczby cech osiągnięto najlepsze rezultaty?
+	\begin{lstlisting}
+                digits = datasets.load_digits()
+                X = digits.data
+                Y = digits.target
+                target_names = digits.target_names
+                train, test, train_targets, test_targets = train_test_split(X, Y, train_size=0.5, test_size=0.5)
+                
+                max = 0
+                max_index = 0
+                for i in range(1, 10):
+                    flda = LDA(n_components=i)
+                    X_r = flda.fit(train, train_targets).transform(train)
+                    Y_r = flda.fit(test, test_targets).transform(test)
+                    clf = KNeighborsClassifier(round(math.sqrt(X.shape[0])),
+                    weights="uniform", metric="euclidean")
+                    clf.fit(X_r, train_targets)
+                    print(i, ":", clf.score(Y_r, test_targets))
+                    if max < clf.score(Y_r, test_targets):
+                        max = clf.score(Y_r, test_targets)
+                        max_index = i
+                print("Best: ", max_index)
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{03}
+                        \centering
+			\caption{Rozwiązanie zadania 3}
+			\label{fig:fig3}
+                \end{figure}
+                \clearpage
+
+                \item 4.Korzystając z algorytmu PLS dokonaj redukcji wymiaru cech dla różnej liczby cech zbioru uczącego MNIST. Następnie sprawdź sprawność klasyfikatora kNN dla zbioru testowego ograniczonego do wybranego podzbioru cech. Parametr kk przyjmij jako pierwiastek z liczby obiektów w zbiorze. Dla jakiej liczby cech osiągnięto najlepsze rezultaty?
+        \begin{lstlisting}
+                print("O wyborze testu decyduje indeks Giniego")
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.8\textwidth]{04}
+                        \centering
+			\caption{Rozwiązanie zadania 4}
+			\label{fig:fig4}
+                \end{figure}
+                \clearpage
+
+        \item 5.Zaimplementuj algorytm SFS.
+        	\begin{lstlisting}
+                        dataSet = datasets.load_digits()
+                        data = dataSet["data"]
+                        target = dataSet["target"]
+                         
+                        plsca = PLSCanonical(n_components = 2)
+                        plsca.fit(data,target)
+                         
+                        X_train_r,Y_train_r = plsca.transform(data,target)
+                         
+                        knn = math.sqrt(len(X_train_r))
+                        knn = KNeighborsClassifier(n_neighbors = int(knn))
+                         
+                        Y_train_r = [int(Y_train_r[i])for i in range(0,len(
+                        Y_train_r))]
+                         
+                        k = knn.fit(X_train_r,Y_train_r)
+                        print(k.score(X_train_r,Y_train_r))
+                        knn = KNeighborsClassifier(n_neighbors = 4)
+                         
+                        sfs = SFS(knn,
+                            k_features = 3,
+                            forward = True,
+                            floating = False,
+                            verbose = 2,
+                            scoring = 'accuracy',
+                            cv = 0)
+                        
+                        print(sfs)
+
+	\end{lstlisting}
+		\begin{figure}[h]
+                        \includegraphics[width=0.6\textwidth]{05}
+                        \centering
+			\caption{Rozwiązanie zadania 5}
+			\label{fig:fig5}
+                \end{figure}
+                \clearpage
+
+        \item 6.Pobierz zbiór danych Arcene ze strony https://archive.ics.uci.edu/ml/datasets/Arcene. Podziel zbiór losowo na część uczącą i testową.
+        \begin{lstlisting}
+                with open('arcene_train.data') as f: raw_data = f.read()
+ 
+                data = np.loadtxt('./arcene_train.data')
+                 
+                random.shuffle(data)
+                 
+                train = data[int(0.7*len(data)):]
+                test = data[:int(0.3*len(data))]
+                
+                print(len(train), len(test))
+                
+	\end{lstlisting}
+                \clearpage
+
+                        \item 7.Dla zbioru danych Arcene dokonaj selekcji 5 procent cech algorytmem SFS. Jako funkcję kryterialną JJprzyjmij sprawność klasyfikatora kNN dla wybranego podzbioru cech. Parametr kk przyjmij jako pierwiastek z liczby obiektów w zbiorze
+
+	\begin{lstlisting}
+                data = np.loadtxt('arcene_train.data')
+                labels = np.loadtxt('arcene_train.labels')
+                 
+                random.shuffle(data)
+                 
+                train = data[int(0.7*len(data)):]
+                test = data[:int(0.3*len(data))]
+                 
+                train = np.array(data[int(0.7*len(data)):])
+                train_labels = np.array(labels[int(0.7*len(data)):])
+                test = np.array(data[:int(0.3*len(data))])
+                 
+                knn = KNeighborsClassifier(n_neighbors = 4)
+                 
+                sfs = SFS(knn,
+                    k_features = math.sqrt(len(train)),
+                    forward = True,
+                    floating = False,
+                    scoring = 'accuracy',
+                    cv = 4)
+                 
+                
+                sfs.fit(train, train_labels)
+                print("SFS: ", sfs.k_score_)
+	\end{lstlisting}
+		
+                \clearpage
+
+                \item 8.Zaimplementuj algorytm SFFS.
+	\begin{lstlisting}
+                data = np.loadtxt('arcene_train.data')
+                labels = np.loadtxt('arcene_train.labels')
+                 
+                random.shuffle(data)
+                 
+                train = data[int(0.7*len(data)):]
+                test = data[:int(0.3*len(data))]
+                 
+                train = np.array(data[int(0.7*len(data)):])
+                train_labels = np.array(labels[int(0.7*len(data)):])
+                test = np.array(data[:int(0.3*len(data))])
+                 
+                knn = KNeighborsClassifier(n_neighbors = 4)
+                
+                sffs = SFS(knn, k_features=(1, 100), forward=True,
+                 floating=True,scoring="accuracy", cv=0) 
+
+	\end{lstlisting}
+                \clearpage
+                \item 9. Dla zbioru danych Arcene dokonaj selekcji 5 procent cech algorytmem SFFS. Jako funkcję kryterialną JJprzyjmij sprawność klasyfikatora kNN dla wybranego podzbioru cech. Parametr kk przyjmij jako pierwiastek z liczby obiektów w zbiorze. Powtórz ekspertyment dla innej liczby cech np. dla 1, 2, 5, 10, 15, 20, 50, 100 cech. W którym przypadku otrzymano najlepsze wyniki.
+	\begin{lstlisting}
+                with open('arcene_train.data') as f: raw_data = f.read()
+ 
+                data = np.loadtxt('arcene_train.data')
+                labels = np.loadtxt('arcene_train.labels')
+                 
+                train = data[int(0.7*len(data)):]
+                test = data[:int(0.3*len(data))]
+                 
+                knn = KNeighborsClassifier(n_neighbors = 5)
+                 
+                sffs = SFS(knn,
+                    k_features = 10,
+                    forward = True,
+                    floating = True,
+                    scoring = 'accuracy',
+                    cv = 4)
+                   
+                T = sffs.fit(train,labels[int(0.7*len(data)):])
+                print(T.k_score_)
+	\end{lstlisting}
+		
+                \clearpage
+
+                \item 12. Dla zbioru danych Arcene dokonaj selekcji 5 procent cech algorytmem SFBS. Jako funkcję kryterialną JJprzyjmij sprawność klasyfikatora kNN dla wybranego podzbioru cech. Parametr kk przyjmij jako pierwiastek z liczby obiektów w zbiorze. Powtórz ekspertyment dla innej liczby cech np. dla 1, 2, 5, 10, 15, 20, 50, 100 cech. W którym przypadku otrzymano najlepsze wyniki.
+                \begin{lstlisting}
+                        data = np.loadtxt('arcene_train.data')
+labels = np.loadtxt('arcene_train.labels')
+ 
+train = data[int(0.7*len(data)):]
+test = data[:int(0.3*len(data))]
+ 
+labels = labels[int(0.7*len(data)):]
+ 
+knn = KNeighborsClassifier(n_neighbors = 5)
+knn = KNeighborsClassifier(n_neighbors = 4)
+ 
+sfbs = SFS(knn,
+    k_features = 15,
+    forward = False,
+    floating = True,
+    scoring = 'accuracy',
+    cv = 4)
+   
+sfbs = sbfs.fit(train,labels)
+print(sfbs.k_score_)
+                \end{lstlisting}
+                        
+                        \clearpage
+
+                        \item 10. Dla zbioru danych Arcene dokonaj selekcji 5% cech algorytmem SBS. Jako funkcję kryterialną JJprzyjmij sprawność klasyfikatora kNN dla wybranego podzbioru cech. Parametr kk przyjmij jako pierwiastek z liczby obiektów w zbiorze. Powtórz ekspertyment dla innej liczby cech np. dla 1, 2, 5, 10, 15, 20, 50, 100 cech. W którym przypadku otrzymano najlepsze wyniki.
+                        \begin{lstlisting}
+                                with open('arcene_train.data') as f: raw_data = f.read()
+ 
+                                data = np.loadtxt('arcene_train.data')
+                                labels = np.loadtxt('arcene_train.labels')
+                                 
+                                train = data[int(0.7*len(data)):]
+                                test = data[:int(0.3*len(data))]
+                                labels = labels[int(0.7*len(data)):]
+                                 
+                                knn = KNeighborsClassifier(n_neighbors = 5)
+                                 
+                                sbs = SFS(knn,
+                                    k_features = 20,
+                                    forward = False,
+                                    floating = False,
+                                    scoring = 'accuracy',
+                                    cv = 4)
+                                   
+                                sbs = sbs.fit(train,labels)
+                                print(sbs.k_score_)
+                        \end{lstlisting}
+                                
+                                \clearpage
+
+                                \item 11. Zaimplementuj algorytm SFBS.
+                                \begin{lstlisting}
+                                        with open('arcene_train.data') as f: raw_data = f.read()
+ 
+data = np.loadtxt('arcene_train.data')
+labels = np.loadtxt('arcene_train.labels')
+ 
+train = data[int(0.7*len(data)):]
+test = data[:int(0.3*len(data))]
+labels = labels[int(0.7*len(data)):]
+
+knn = KNeighborsClassifier(n_neighbors = 4)
+ 
+sfbs = SFS(knn,
+    k_features = 3,
+    forward = False,
+    floating = True,
+    scoring = 'accuracy',
+    cv = 4)
+                                \end{lstlisting}
+                                        
+                                        \clearpage
+
+        \end{itemize}
+	
+\end{document}
+\end{document}
